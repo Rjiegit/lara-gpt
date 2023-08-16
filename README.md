@@ -1,9 +1,11 @@
 # LaraGPT
 
-Use the Open AI api to build a chatbot for Laravel.
+Utilize the Open AI API and LangChain to build a chatbot for Laravel.
+
+Support for comparing differences across multiple versions.
 
 ## Demo
-
+![img.png](img.png)
 
 ## Development
 
