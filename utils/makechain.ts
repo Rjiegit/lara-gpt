@@ -16,7 +16,19 @@ If the question is not related to the context, politely respond that you are tun
 {context}
 
 Question: {question}
-Helpful answer in markdown:`;
+Response should be in 正體中文
+並且為該問題提出三個可用的延伸問題。
+
+回答格式
+---
+(回覆的答案)
+
+你可能會有興趣：
+* (延伸問題1)
+* (延伸問題2)
+* (延伸問題3)
+---
+`;
 
 export const makeChain = (vectorstore: PineconeStore) => {
   const model = new OpenAI({
@@ -24,7 +36,7 @@ export const makeChain = (vectorstore: PineconeStore) => {
     modelName: 'gpt-3.5-turbo', //change this to gpt-4 if you have access
   });
 
-  const chain = ConversationalRetrievalQAChain.fromLLM(
+  return ConversationalRetrievalQAChain.fromLLM(
     model,
     vectorstore.asRetriever(),
     {
@@ -33,5 +45,4 @@ export const makeChain = (vectorstore: PineconeStore) => {
       returnSourceDocuments: true, //The number of source documents returned is 4 by default
     },
   );
-  return chain;
 };
